@@ -11,15 +11,16 @@
 
 	Subtitler.prototype.setSubtitle = function(text) {
 		this.subtitleArray = [];
-		var rawArray = text.split(/[\r\n]/);
-		for (var i = 0, linenum = 1; i < rawArray.length; i++, linenum++) {
+		var rawArray = text.split(/[\r\n]+/);
+        window.rawArray = rawArray;
+		for (var i = 0, linenum = 1; i < rawArray.length; linenum++) {
 			var data = {text: ''};
 			if ( rawArray[i] == linenum ) {
-				var duration = rawArray[++i];
-				data.starttime = toSeconds(duration.split(' --> ')[0]);
-				data.endtime = toSeconds(duration.split(' --> ')[1]);
+				var duration = rawArray[++i].split(' --> ');
+				data.starttime = toSeconds(duration[0]);
+				data.endtime = toSeconds(duration[1]);
 			};
-			while( rawArray[++i] != '' ) {
+			while( i < rawArray.length && rawArray[++i] != linenum + 1 ) {
 				data.text += rawArray[i];
 			}
 			this.subtitleArray.push(data);
@@ -131,11 +132,14 @@
 
 
 	var toSeconds = function(time) {
-		var h2s = time.split(',')[0];
-		var mill = time.split(',')[1];
-		var h = h2s.split(':')[0];
-		var m = h2s.split(':')[1];
-		var s = h2s.split(':')[2];
+        if( ! time ) return -1;
+        var timeArray = time.split(',');
+		var h2s = timeArray[0];
+		var mill = timeArray[1];
+        var h2sArray = h2s.split(':');
+		var h = h2sArray[0];
+		var m = h2sArray[1];
+		var s = h2sArray[2];
 		return parseInt(h) * 3600 + parseInt(m) * 60 + parseInt(s) + parseFloat("0."+mill);
 	};
 
