@@ -8,6 +8,15 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <script type="text/javascript" src="subtitler-1.0.0.js"></script>
+	<link rel="stylesheet" href="subtitler-1.0.0.css">
+    <style>
+	.player {
+		position: relative;
+		background-color: black;
+		width: 704px;
+	}
+	</style>
 
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -32,6 +41,25 @@
 <a name="subtitler" class="anchor" href="#subtitler"><span class="octicon octicon-link"></span></a>Subtitler</h1>
 
 <p>This is a simple standalone javascript library to parse and show srt subtitle in a web page.</p>
+
+<h2>Demo</h2>
+<div class="player">
+		<video id="video" width="704" height="480" controls>
+	  		<source src="video.mp4" type="video/mp4">
+		</video>
+		<div id="subtitler"></div>
+	</div>
+
+
+	<script type="text/javascript">
+	var text = "1\n00:41:52,960 --> 00:41:58,840\n好久没有你的信 好久没有人陪我谈心\n\n2\n00:41:59,940 --> 00:42:06,480\n怀念你柔情似水的眼睛 是我天空最美丽的星星\n\n3\n00:42:06,910 --> 00:42:13,620\n异乡的午夜特别冷清 一个男人和一颗热切的心\n\n4\n00:42:14,040 --> 00:42:20,520\n不知在远方的你是否能感应\n\n5\n00:42:21,780 --> 00:42:28,560\n我从来不敢给你任何诺言 是因为我知道我们太年轻\n\n6\n00:42:29,490 --> 00:42:35,920\n你追求的是一种浪漫感觉 还是那不必负责任的热情\n\n7\n00:42:36,420 --> 00:42:42,870\n心中的话到现在才对你表明 不知道你是否会因此而清醒\n\n8\n00:42:43,790 --> 00:42:49,750\n让身在远方的我不必为你担心\n\n9\n00:42:50,610 --> 00:42:58,430\n一颗爱你的心 时时刻刻为你转不停\n\n10\n00:42:58,800 --> 00:43:05,380\n我的爱 也曾经 深深温暖你的心灵\n\n11\n00:43:05,750 --> 00:43:13,020\n你和他之间 是否已经有了真感情\n\n12\n00:43:13,350 --> 00:43:20,890\n别隐瞒对我说 别怕我伤心\n";
+	var sub = new Subtitler({offset: -1*(41*60+46)});
+	sub.setSubtitle(text);
+	var video = document.getElementById('video');
+	video.addEventListener( "timeupdate", function() {
+        sub.move(video.currentTime);
+    } );
+	</script>
 
 <h2>
 <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>

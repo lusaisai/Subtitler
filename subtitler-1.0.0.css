@@ -1,0 +1,19 @@
+.subtitler-show {
+	position: absolute;
+	color: white;
+	font-family: "Microsoft YaHei","Hiragino Sans GB W3",Tahoma,Arial;
+	bottom: 50px;
+	width: 100%;
+	background-color: rgba(0,0,0,0.5);
+	text-align: center;
+}
+
+.subtitler-hide {
+	position: absolute;
+	color: white;
+	font-family: "Microsoft YaHei","Hiragino Sans GB W3",Tahoma,Arial;
+	bottom: 50px;
+	width: 100%;
+	background-color: rgba(0,0,0,0);
+	text-align: center;
+}
