@@ -5,11 +5,14 @@
         this.cssHide = 'subtitler-hide';
         this.offset = 0;
         this.currentLine = -1;
-        for( var prop in options ) {
-            if ( typeof this[prop] != "undefined") {
-               this[prop] =  options[prop];
+        if( options ) {
+            for( var prop in options ) {
+                if ( typeof this[prop] != "undefined") {
+                    this[prop] =  options[prop];
+                }
             }
         }
+        
     };
 
     Subtitler.prototype.setSubtitle = function(text) {
