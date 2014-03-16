@@ -17,7 +17,7 @@ In your js code, you can create a Subtitler object, options can be provided, or 
     sub.setSubtitle(text);
 ```
 
-In your page, you need to create an empty div with the default id 'subtitler'. The id can be changed through options. This div is to place the html lyric.
+In your page, you need to create an empty div with the default id 'subtitler'. The id can be changed through options. This div is to place the html subtitle.
 ```html
     <div id="lyricer"></div>
 ```
