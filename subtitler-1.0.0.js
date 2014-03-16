@@ -1,11 +1,14 @@
 (function() {
-    var Subtitler = function (argument) {
+    var Subtitler = function (options) {
         this.divId = 'subtitler';
         this.cssShow = 'subtitler-show';
         this.cssHide = 'subtitler-hide';
+        this.offset = 0;
         this.currentLine = -1;
-        if (argument) {
-            this.setSubtitle(argument);
+        for( var prop in options ) {
+            if ( typeof this[prop] != "undefined") {
+               this[prop] =  options[prop];
+            }
         }
     };
 
@@ -17,8 +20,8 @@
             var data = {text: ''};
             if ( rawArray[i] == linenum ) {
                 var duration = rawArray[++i].split(' --> ');
-                data.starttime = toSeconds(duration[0]);
-                data.endtime = toSeconds(duration[1]);
+                data.starttime = toSeconds(duration[0]) + this.offset;
+                data.endtime = toSeconds(duration[1]) + this.offset;
             }
             while( i < rawArray.length && rawArray[++i] != linenum + 1 ) {
                 data.text += rawArray[i];
