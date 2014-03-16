@@ -68,8 +68,6 @@
             setHtml(this, undefined);
             this.rest = true;
         }
-
-
     };
 
     var binary_search = function( self, array, startindex, endindex, time ) {
@@ -124,8 +122,6 @@
             subdiv.className = self.cssHide;
         }
     };
-
-
 
     var toSeconds = function(time) {
         if( ! time ) return -1;
