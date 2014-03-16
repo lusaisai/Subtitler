@@ -19,7 +19,7 @@ In your js code, you can create a Subtitler object, options can be provided, or 
 
 In your page, you need to create an empty div with the default id 'subtitler'. The id can be changed through options. This div is to place the html subtitle.
 ```html
-    <div id="lyricer"></div>
+    <div id="subtitler"></div>
 ```
 
 The main method is to move to a specific time in seconds.
