@@ -18,7 +18,6 @@
     Subtitler.prototype.setSubtitle = function(text) {
         this.subtitleArray = [];
         var rawArray = text.split(/[\r\n]+/);
-        window.rawArray = rawArray;
         for (var i = 0, linenum = 1; i < rawArray.length; linenum++) {
             var data = {text: ''};
             if ( rawArray[i] == linenum ) {
@@ -26,10 +25,10 @@
                 data.starttime = toSeconds(duration[0]) + this.offset;
                 data.endtime = toSeconds(duration[1]) + this.offset;
             }
-            while( i < rawArray.length && rawArray[++i] != linenum + 1 ) {
+            while( i < rawArray.length && rawArray[++i] && rawArray[i] != linenum + 1 ) {
                 data.text += rawArray[i];
             }
-            this.subtitleArray.push(data);
+            if ( data.text ) {this.subtitleArray.push(data);}
         }
 
     };
@@ -69,8 +68,6 @@
             setHtml(this, undefined);
             this.rest = true;
         }
-
-
     };
 
     var binary_search = function( self, array, startindex, endindex, time ) {
@@ -125,8 +122,6 @@
             subdiv.className = self.cssHide;
         }
     };
-
-
 
     var toSeconds = function(time) {
         if( ! time ) return -1;
