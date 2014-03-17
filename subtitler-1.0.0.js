@@ -12,7 +12,7 @@
                 }
             }
         }
-        
+
     };
 
     Subtitler.prototype.setSubtitle = function(text) {
@@ -25,9 +25,11 @@
                 data.starttime = toSeconds(duration[0]) + this.offset;
                 data.endtime = toSeconds(duration[1]) + this.offset;
             }
+            var textArray = [];
             while( i < rawArray.length && rawArray[++i] && rawArray[i] != linenum + 1 ) {
-                data.text += rawArray[i];
+                textArray.push(rawArray[i]);
             }
+            data.text = textArray.join('<br/>');
             if ( data.text ) {this.subtitleArray.push(data);}
         }
 
