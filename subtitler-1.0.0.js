@@ -74,29 +74,15 @@
 
     var binary_search = function( self, array, startindex, endindex, time ) {
         if ( startindex > endindex ) { return undefined }
-        if ( startindex + 1 == endindex ) {
-            if( between( time, array[startindex].starttime, array[startindex].endtime ) ) {
-                self.currentLine = startindex;
-                return array[startindex].text;
-            }
-            if( between( time, array[endindex].starttime, array[endindex].endtime ) ) {
-                self.currentLine = endindex;
-                return array[endindex].text;
-            }
-            return undefined;
-        }
         var middle = parseInt( (startindex + endindex) / 2 );
         var result = compareTime( time, array[middle].starttime, array[middle].endtime );
-        if ( startindex == endindex && result != 0 ) { return undefined; }
         if ( result == 0 ) {
             self.currentLine = middle;
             return array[middle].text;
         } else if ( result == -1 ) {
-            return binary_search( self, array, startindex, middle, time )
-        } else if ( result == 1 ) {
-            return binary_search( self, array, middle, endindex, time )
+            return binary_search( self, array, startindex, middle-1, time );
         } else {
-            return undefined;
+            return binary_search( self, array, middle+1, endindex, time );
         }
     };
 
