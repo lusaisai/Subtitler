@@ -7,7 +7,7 @@
         this.currentLine = -1;
         if( options ) {
             for( var prop in options ) {
-                if ( typeof this[prop] != "undefined") {
+                if ( typeof this[prop] != "undefined" && options.hasOwnProperty(prop)) {
                     this[prop] =  options[prop];
                 }
             }
